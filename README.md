@@ -1,3 +1,3 @@
 ## Checkpoint
 
-[Click here to continue](https://lootdest.com/s?qS0K)
+[Click here to continue](https://loot-link.com/s?qS0K)
