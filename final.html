@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final Checkpoint</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    .container {
+        padding: 20px;
+    }
+    .example-text {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    .button:hover {
+        background-color: #0056b3;
+    }
+    .pastebin-text {
+        margin-top: 20px;
+        padding: 10px;
+        border: 2px solid #007bff;
+        border-radius: 5px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="example-text">Final Checkpoint</div>
+    <a href="https://linkvertise.com/548819/key-for-35-new-link?o=sharing" class="button">Click here to continue</a>
+    <div class="pastebin-text" id="pastebin-text"></div>
+</div>
+<script>
+    fetch('https://pastebin.com/raw/2jbXW6D2')
+        .then(response => response.text())
+        .then(text => {
+            document.getElementById('pastebin-text').innerText = text;
+        });
+</script>
+</body>
+</html>
