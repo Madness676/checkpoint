@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Final Checkpoint</title>
+<title>Copy The Key Below</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -36,13 +36,14 @@
         border: 2px solid #007bff;
         border-radius: 5px;
         text-align: left;
+        white-space: pre-line; /* Preserve line breaks */
     }
 </style>
 </head>
 <body>
 <div class="container">
-    <div class="example-text">Final Checkpoint</div>
-    <a href="https://linkvertise.com/548819/key-for-35-new-link?o=sharing" class="button">Click here to continue</a>
+    <div class="example-text">Copy The Key Below</div>
+    <button id="copy-button" class="button">Copy Text</button>
     <div class="pastebin-text" id="pastebin-text"></div>
 </div>
 <script>
@@ -51,6 +52,15 @@
         .then(text => {
             document.getElementById('pastebin-text').innerText = text;
         });
+
+    document.getElementById('copy-button').addEventListener('click', function() {
+        var textToCopy = document.getElementById('pastebin-text').innerText;
+        navigator.clipboard.writeText(textToCopy).then(function() {
+            alert('Text copied to clipboard');
+        }, function(err) {
+            console.error('Could not copy text: ', err);
+        });
+    });
 </script>
 </body>
 </html>
