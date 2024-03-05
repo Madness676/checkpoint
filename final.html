@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Copy The Key Below</title>
+<title>Copy Key</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -26,41 +26,54 @@
         text-decoration: none;
         border-radius: 5px;
         transition: background-color 0.3s;
+        margin-bottom: 20px;
     }
     .button:hover {
         background-color: #0056b3;
     }
-    .pastebin-text {
-        margin-top: 20px;
+    .textbox {
+        width: 80%;
+        height: 200px;
+        margin: 0 auto;
         padding: 10px;
-        border: 2px solid #007bff;
+        border: 1px solid #ccc;
         border-radius: 5px;
-        text-align: left;
-        white-space: pre-line; /* Preserve line breaks */
+        overflow: auto;
     }
 </style>
 </head>
 <body>
 <div class="container">
-    <div class="example-text">Copy The Key Below</div>
-    <button id="copy-button" class="button">Copy Text</button>
-    <div class="pastebin-text" id="pastebin-text"></div>
+    <div class="example-text">Copy the Key below</div>
+    <a href="#" class="button" onclick="copyText()">Copy the text</a>
+    <textarea class="textbox" id="content" readonly></textarea>
 </div>
 <script>
+    function copyText() {
+        /* Get the text field */
+        var copyText = document.getElementById("content");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+
+        /* Alert the copied text */
+        alert("Copied the text: " + copyText.value);
+    }
+
+    // Fetch the content of the pastebin
     fetch('https://pastebin.com/raw/2jbXW6D2')
         .then(response => response.text())
-        .then(text => {
-            document.getElementById('pastebin-text').innerText = text;
+        .then(data => {
+            // Display the content in the textarea
+            document.getElementById('content').value = data;
+        })
+        .catch(error => {
+            console.error('Error fetching pastebin content:', error);
         });
-
-    document.getElementById('copy-button').addEventListener('click', function() {
-        var textToCopy = document.getElementById('pastebin-text').innerText;
-        navigator.clipboard.writeText(textToCopy).then(function() {
-            alert('Text copied to clipboard');
-        }, function(err) {
-            console.error('Could not copy text: ', err);
-        });
-    });
 </script>
 </body>
 </html>
