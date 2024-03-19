@@ -1,28 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Display Pastebin Content</title>
-    <style>
-        textarea {
-            width: 100%;
-            height: 300px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copy Text</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f5f9;
+    color: #87CEEB; /* Sky blue text color */
+  }
+  .container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  #textBoxContainer {
+    position: relative;
+  }
+  #textBox {
+    border: 1px solid #87CEEB; /* Sky blue border */
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 300px;
+    display: block;
+    margin: 0 auto; /* Center the textbox */
+    text-align: center; /* Center text horizontally */
+    background-color: #fff;
+    color: black; /* Black text color */
+    border-radius: 5px;
+  }
+  #copyButton {
+    background-color: #5F9EA0; /* Dark sky blue button color */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    margin-top: 20px; /* Add margin between textbox and button */
+    cursor: pointer;
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+  }
+  #title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: black; /* Black title color */
+  }
+</style>
 </head>
 <body>
-    <textarea id="content"></textarea>
-    <script>
-        const pastebinUrl = 'https://pastebin.com/raw/2jbXW6D2'; // Provided Pastebin URL
-        const contentTextarea = document.getElementById('content');
 
-        fetch(pastebinUrl)
-            .then(response => response.text())
-            .then(data => {
-                contentTextarea.value = data;
-            })
-            .catch(error => {
-                console.error('Error fetching content:', error);
-            });
-    </script>
+<div class="container">
+  <div id="title">All Checkpoints Completed</div> <!-- New Title -->
+  <div id="textBoxContainer">
+    <input type="text" id="textBox" readonly>
+    <button id="copyButton" onclick="copyText()">Copy Text</button>
+  </div>
+</div>
+
+<script>
+  fetch('https://raw.githubusercontent.com/Madness676/new927/main/yessir.json')
+    .then(response => response.text())
+    .then(data => {
+      var content = JSON.parse(data);
+      document.getElementById("textBox").value = content.text;
+    })
+    .catch(error => console.error('Error fetching GitHub content:', error));
+  
+  function copyText() {
+    var textToCopy = document.getElementById("textBox");
+    textToCopy.select();
+    document.execCommand("copy");
+    alert("Text copied to clipboard!");
+  }
+</script>
+
 </body>
 </html>
